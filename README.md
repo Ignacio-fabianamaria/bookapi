@@ -1,5 +1,9 @@
 # :book: BOOKAPI
 
+## :rocket: Descrição
+
+A BOOKAPI é uma API de gerenciamento de livros, que permite cadastrar usuários, cadastrar informações sobre livros, realizar a listagem dos livros cadastrados, atualizar informações dos usuários e realizar a exclusão de livros e usuários.
+
 ## :key: Requisitos
 
 - Cadastro de usuário
