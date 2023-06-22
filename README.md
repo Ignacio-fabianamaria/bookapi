@@ -19,4 +19,3 @@ A BOOKAPI é uma API de gerenciamento de livros, que permite cadastrar usuários
 - Não é possível cadastrar o mesmo livro mais de uma vez.
 - Não é possível deletar uma conta de usuário inexistente.
 - Não é possível deletar um livro inexistente.
-
