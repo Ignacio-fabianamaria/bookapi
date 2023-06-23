@@ -38,7 +38,7 @@ app.put('/users/:id', (req, res) => {
 app.delete('/users/:id', (req, res)=> {
     const {id} = req.params;
 
-    const user = users.find(user => user.id === id);
+    const user = users.findIndex(user => user.id === id);
 
     if(!user){
         return res.status(400).json({message: "User not found"})};
@@ -76,5 +76,18 @@ app.get('/books/:id', (req, res) => {
     return res.status(200).json(findBookUser)
     console.log("🚀 ~ file: index.js:52 ~ app.get ~ findBookUser:", findBookUser)
 });
+
+app.delete('/books/:id', (req, res)=> {
+    const {id} = req.params;
+
+    const book = books.findIndex(book => book.id === id);
+
+    if(!book){
+        return res.status(400).json({message: "Book not found"})};
+
+    books.splice(book, 1);
+
+    return res.json(books);
+})
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
