@@ -33,6 +33,19 @@ app.put('/users/:id', (req, res) => {
 
     return res.json(users);
 
+});
+
+app.delete('/users/:id', (req, res)=> {
+    const {id} = req.params;
+
+    const user = users.find(user => user.id === id);
+
+    if(!user){
+        return res.status(400).json({message: "User not found"})};
+
+    users.splice(user, 1);
+
+    return res.json(users);
 })
 
 function stringFormatted(string) {
