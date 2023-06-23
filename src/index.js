@@ -40,6 +40,16 @@ app.post('/books', (req, res)=>{
     const id = uuid();
     books.push({name, author, company, description, id, user_id})
     return res.status(201).json({message: " Book created "})
-})
+});
+
+app.get('/books/:id', (req, res)=> {
+    const{id} = req.params;
+
+    const findBookUser = books.filter(book => {
+         return book.user_id === id
+    })
+    return res.status(200).json(findBookUser)
+    console.log("🚀 ~ file: index.js:52 ~ app.get ~ findBookUser:", findBookUser)
+});
 
 app.listen(PORT, ()=> console.log(`Server is running on port ${PORT}`));
