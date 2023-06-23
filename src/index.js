@@ -20,5 +20,8 @@ users.push({name,email,id});
 return res.status(201).json({message: "User created"})
 });
 
+app.get('/users', (req, res)=> {
+    return res.status(200).json(users)
+})
 
 app.listen(PORT, ()=> console.log(`Server is running on port ${PORT}`));
