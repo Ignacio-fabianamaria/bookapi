@@ -1,5 +1,8 @@
 const express = require('express');
-const { v4: uuid } = require('uuid')
+const { v4: uuid } = require('uuid');
+
+
+
 
 const app = express();
 const PORT = 3333;
@@ -7,6 +10,18 @@ app.use(express.json());
 
 const users = [];
 const books = [];
+
+
+function verifyUser(req, res, next){
+    const {email} = req.headers
+    const emailAlreadyExists = users.find((user) => user.email === email)
+    if (!emailAlreadyExists) {
+        return res.status(400).json({ message: "User not found" })
+    }
+    req.user = emailAlreadyExists;
+    return next
+
+}
 
 app.post('/users', (req, res) => {
     const { name, email } = req.body;
@@ -35,7 +50,7 @@ app.put('/users/:id', (req, res) => {
 
 });
 
-app.delete('/users/:id', (req, res)=> {
+app.delete('/users/:id', verifyUser, (req, res)=> {
     const {id} = req.params;
 
     const user = users.findIndex(user => user.id === id);
