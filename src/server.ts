@@ -7,12 +7,12 @@ dotenv.config()
 
 const app: Application = express()
 const PORT = 3333
-const userRoutes = new UserRoutes().getRoutes
+const userRoutes = new UserRoutes().getRoutes()
 const database = new DbConnection
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))/*configura o Express para analisar dados de formulários enviados por requisições POST.*/
-app.use('/', userRoutes)
+app.use('/user', userRoutes)
 database.connect()
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 	if(err instanceof Error){

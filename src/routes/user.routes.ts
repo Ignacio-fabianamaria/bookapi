@@ -11,7 +11,7 @@ class UserRoutes{
 	}
 
 	getRoutes(){
-		this.router.get('/user',this.userController.index.bind(this.userController))
+		this.router.post('/',this.userController.store.bind(this.userController))
 		return this.router
 	}
 }
