@@ -4,6 +4,10 @@ interface ICreate {
 	email:string,
 	password:string
 }
+interface IPage {
+	page:number,
+	size:number
+}
 
 //Responsabilidade de se comunicar com o banco de dados
 class UserRepository{
@@ -21,8 +25,8 @@ class UserRepository{
 		return result
 	}
 
-	async findAll(){
-		const result = await User.find()
+	async findAll({page, size}: IPage){
+		const result = await User.find().skip((page-1)* size).limit(size).exec()
 		return result
 	}
 }

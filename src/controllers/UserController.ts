@@ -25,8 +25,16 @@ class UserController{
 	}
 	async index(req: Request, res:Response, next: NextFunction){
 	// buscar todos
+		const {page, size} = req.query
+		console.log('🚀 ~ file: UserController.ts:29 ~ UserController ~ index ~ page, size:', page, size)
+
+		const DEFAULT_PAGE = 1
+		const DEFAULT_SIZE = 2
+		const pageNumber = page ? parseInt(page as string, 10) : DEFAULT_PAGE
+		const sizeNumber = size ? parseInt(size as string, 10) : DEFAULT_SIZE
 		try {
-			const result = await this.userRepository.findAll()
+			const result = await this.userRepository.findAll({page:pageNumber, size:sizeNumber})
+			console.log('🚀 ~ file: UserController.ts:37 ~ UserController ~ index ~ result:', result)
 			return res.json(result)
 		} catch (error) {
 			next(error)
