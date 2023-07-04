@@ -20,6 +20,11 @@ class UserRepository{
 		})
 		return result
 	}
+
+	async findAll(){
+		const result = await User.find()
+		return result
+	}
 }
 
 export {UserRepository}

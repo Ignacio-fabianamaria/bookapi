@@ -23,8 +23,14 @@ class UserController{
 			next(error)
 		}
 	}
-	index(req: Request, res:Response, next: NextFunction){
+	async index(req: Request, res:Response, next: NextFunction){
 	// buscar todos
+		try {
+			const result = await this.userRepository.findAll()
+			return res.json(result)
+		} catch (error) {
+			next(error)
+		}
 	}
 	show(req: Request, res:Response, next: NextFunction){
 	// buscar apenas um
