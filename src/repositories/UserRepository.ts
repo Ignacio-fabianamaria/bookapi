@@ -44,6 +44,11 @@ class UserRepository{
 		return result
 
 	}
+
+	async delete(id:string){
+		const result = await User.findByIdAndRemove(id)
+		return result
+	}
 }
 
 export {UserRepository}
