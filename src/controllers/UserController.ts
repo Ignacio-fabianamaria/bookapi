@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { User } from '../models'
-import { hash } from 'bcrypt'
+import { compare, hash } from 'bcrypt'
 import { UserRepository } from '../repositories/UserRepository'
 
 class UserController{
@@ -50,8 +49,30 @@ class UserController{
 			next(error)
 		}
 	}
-	update(req: Request, res:Response, next: NextFunction){
+	async update(req: Request, res:Response, next: NextFunction){
 	// atualizar
+		const {id} = req.params
+		const {name, password, oldPassword} = req.body
+		try {
+			const findUser = await this.userRepository.findById(id)
+			if(!findUser){
+				throw new Error('User not found')
+			}
+			if(password && oldPassword && findUser.password){
+				const passwordMatch = await compare(oldPassword, findUser.password)
+				if(!passwordMatch){
+					throw new Error('Password doesn`t match')
+				}
+				const hashPassword = await hash(password,10)
+				await this.userRepository.updatePassword(hashPassword,id)
+			}
+			if(name){
+				await this.userRepository.updateName(name, id)
+			}
+			return res.json({message : 'User updated successfully'})
+		} catch (error) {
+			next(error)
+		}
 	}
 }
 

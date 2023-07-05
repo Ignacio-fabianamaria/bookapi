@@ -34,6 +34,16 @@ class UserRepository{
 		const result = User.findById(id)
 		return result
 	}
+
+	async updatePassword(password:string, id:string){
+		await User.findById(id).updateOne({password})
+	}
+
+	async updateName(name:string,id:string){
+		const result = await User.findById(id).updateOne({name})
+		return result
+
+	}
 }
 
 export {UserRepository}
