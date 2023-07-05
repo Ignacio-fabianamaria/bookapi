@@ -40,8 +40,15 @@ class UserController{
 			next(error)
 		}
 	}
-	show(req: Request, res:Response, next: NextFunction){
+	async show(req: Request, res:Response, next: NextFunction){
 	// buscar apenas um
+		const {id} = req.params
+		try {
+			const result = await this.userRepository.findById(id)
+			return res.json(result)
+		} catch (error) {
+			next(error)
+		}
 	}
 	update(req: Request, res:Response, next: NextFunction){
 	// atualizar

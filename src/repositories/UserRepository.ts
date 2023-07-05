@@ -29,6 +29,13 @@ class UserRepository{
 		const result = await User.find().skip((page-1)* size).limit(size).exec()
 		return result
 	}
+
+	async findById(id:string){
+		const result = User.findById(id)
+		return result
+	}
 }
 
 export {UserRepository}
+
+
