@@ -11,4 +11,28 @@ const userSchema = new mongoose.Schema({
 	password: String,
 })
 const User =  mongoose.model('User', userSchema)
-export {User}
+
+const booksSchema = new mongoose.Schema({
+	_id:{
+		type:String,
+		default:uuid()
+	},
+	name:String,
+	author:String,
+	company:String,
+	read:Boolean,
+	dataRead:Date,
+	description:String,
+	rate:Number,
+	user_id:{
+		type:mongoose.Schema.Types.ObjectId,
+		ref:'User',
+		require:true,
+	},
+})
+const Books = mongoose.model('Books', booksSchema)
+
+export {
+	User,
+	Books,
+}

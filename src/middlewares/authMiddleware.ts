@@ -8,6 +8,7 @@ class AuthMiddleware {
 	}
 	async auth(req:Request, res:Response, next:NextFunction){
 		const authHeader:string = req.headers.email as string
+		console.log('🚀 ~ file: authMiddleware.ts:11 ~ AuthMiddleware ~ auth ~ authHeader:', authHeader)
 		if(!authHeader){
 			return res.status(401).json({
 				code: 'token.missing',
@@ -22,7 +23,7 @@ class AuthMiddleware {
 			})
 		}
 		req.user_id = findUser?.id
-		return next
+		return next()
 	}
 }
 export { AuthMiddleware}

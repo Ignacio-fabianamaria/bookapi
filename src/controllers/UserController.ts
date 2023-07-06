@@ -17,7 +17,7 @@ class UserController{
 			}
 			const hashPassword = await hash(password, 10)
 			const createUser = await this.userRepository.create({name, password:hashPassword, email })
-			return res.json(createUser)
+			return res.status(201).json(createUser)
 		} catch (error) {
 			next(error)
 		}
@@ -33,7 +33,6 @@ class UserController{
 		const sizeNumber = size ? parseInt(size as string, 10) : DEFAULT_SIZE
 		try {
 			const result = await this.userRepository.findAll({page:pageNumber, size:sizeNumber})
-			console.log('🚀 ~ file: UserController.ts:37 ~ UserController ~ index ~ result:', result)
 			return res.json(result)
 		} catch (error) {
 			next(error)
