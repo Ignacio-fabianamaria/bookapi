@@ -2,17 +2,20 @@ import express, { Application, NextFunction, Request, Response } from 'express'
 import { UserRoutes } from './routes/user.routes'
 import { DbConnection } from './database'
 import dotenv from 'dotenv'
+import { BookRoutes } from './routes/book.routes'
 dotenv.config()
 
 
 const app: Application = express()
 const PORT = 3333
 const userRoutes = new UserRoutes().getRoutes()
+const booksRoutes = new BookRoutes().getRoutes()
 const database = new DbConnection
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))/*configura o Express para analisar dados de formulários enviados por requisições POST.*/
 app.use('/user', userRoutes)
+app.use('/books', booksRoutes)
 database.connect()
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 	if(err instanceof Error){
