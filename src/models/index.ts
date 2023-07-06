@@ -4,7 +4,7 @@ import {v4 as uuid} from 'uuid'
 const userSchema = new mongoose.Schema({
 	_id:{
 		type:String,
-		default: uuid()
+
 	},
 	name: String,
 	email: String,
@@ -13,10 +13,7 @@ const userSchema = new mongoose.Schema({
 const User =  mongoose.model('User', userSchema)
 
 const booksSchema = new mongoose.Schema({
-	_id:{
-		type:String,
-		default:uuid()
-	},
+	
 	name:String,
 	author:String,
 	company:String,

@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, request } from 'express'
+import { NextFunction, Request, Response, } from 'express'
 import { BooksRepository } from '../repositories/BooksRepository'
 
 class BooksController {
@@ -10,8 +10,14 @@ class BooksController {
 		// create
 		const {name, author, company, read, dateReade, description, rate} = req.body
 		const {user_id} = req
-		console.log('🚀 ~ file: BooksController.ts:13 ~ BooksController ~ store ~ d:', user_id)
 		try {
+			const findBooksByUser = await this.booksRepository.findByUserId(user_id)
+			const filterBooks = findBooksByUser.find((book) =>{
+				return (book.name && StringFormatter.formatString(book.name) === StringFormatter.formatString(name))
+			})
+			if(filterBooks){
+				throw new Error('Book already existis')
+			}
 			const result = await this.booksRepository.create({
 				name,
 				author,
@@ -26,6 +32,15 @@ class BooksController {
 		} catch (error) {
 			next(error)
 		}
+	}
+}
+
+class StringFormatter{
+	static formatString(str:string){
+		str = str.toLowerCase()
+		str = str.trimEnd()//remover espaço no final
+		str = str.normalize('NFD')//remover acentos
+		return str
 	}
 }
 export { BooksController }
