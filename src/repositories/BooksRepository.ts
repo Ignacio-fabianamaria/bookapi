@@ -6,7 +6,7 @@ interface ICreateBook {
 	author:string,
 	company:string,
 	read:boolean,
-	dateReade:Date,
+	dateReade:Date | null,
 	description:string,
 	rate:number,
 	user_id:string,

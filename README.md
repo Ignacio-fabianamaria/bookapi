@@ -19,6 +19,7 @@ A BOOKAPI é uma API de gerenciamento de livros, que permite cadastrar usuários
 - Não é possível cadastrar o mesmo livro mais de uma vez.
 - Não é possível deletar uma conta de usuário inexistente.
 - Não é possível deletar um livro inexistente.
+- Não é possível atribuir nenhuma nota ao livro que ainda não foi lido.
 
 ## MongoDB Atlas Database Configuration
 

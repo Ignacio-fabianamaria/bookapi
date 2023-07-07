@@ -11,6 +11,8 @@ class BooksController {
 		const {name, author, company, read, dateReade, description, rate} = req.body
 		const {user_id} = req
 		try {
+			const readVerify = read ? true : false
+			const dateReadVerify = dateReade ? new Date(dateReade): null
 			const findBooksByUser = await this.booksRepository.findByUserId(user_id)
 			const filterBooks = findBooksByUser.find((book) =>{
 				return (book.name && StringFormatter.formatString(book.name) === StringFormatter.formatString(name))
@@ -18,12 +20,16 @@ class BooksController {
 			if(filterBooks){
 				throw new Error('Book already existis')
 			}
+			if(!readVerify && rate ){
+				throw new Error('You can grade only books thai have been read')
+
+			}
 			const result = await this.booksRepository.create({
 				name,
 				author,
 				company,
-				read,
-				dateReade,
+				read: readVerify,
+				dateReade: dateReadVerify,
 				description,
 				rate,
 				user_id,
