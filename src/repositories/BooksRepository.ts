@@ -11,6 +11,12 @@ interface ICreateBook {
 	rate:number,
 	user_id:string,
 }
+interface IBookPaginate {
+	user_id:string,
+	page:number,
+	size:number,
+}
+
 
 class BooksRepository {
 	async create({name,author,company,read,dateReade,description,rate,user_id}:ICreateBook){
@@ -29,6 +35,11 @@ class BooksRepository {
 
 	async findByUserId(user_id:string){
 		const result = await Books.find({user_id})
+		return result
+	}
+
+	async findPaginateByUserId({user_id, page, size}:IBookPaginate){
+		const result = Books.find({user_id}).skip((page-1)*size).limit(size).exec()
 		return result
 	}
 }

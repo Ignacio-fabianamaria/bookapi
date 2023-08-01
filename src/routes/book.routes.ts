@@ -16,6 +16,12 @@ class BookRoutes {
 			this.authMiddleware.auth.bind(this.authMiddleware),
 			this.booksController.store.bind(this.booksController),
 		)
+
+		this.router.get('/', this.authMiddleware.auth.bind(this.authMiddleware),
+			this.booksController.index.bind(this.booksController))
+
+
+
 		return this.router
 	}
 }

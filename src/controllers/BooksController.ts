@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, } from 'express'
+import { NextFunction, Request, Response, request, } from 'express'
 import { BooksRepository } from '../repositories/BooksRepository'
 
 class BooksController {
@@ -35,6 +35,27 @@ class BooksController {
 				user_id,
 			})
 			return res.status(201).json(result)
+		} catch (error) {
+			next(error)
+		}
+	}
+
+	async index(req:Request, res:Response, next:NextFunction){
+		const {page, size} = req.query
+		const { user_id } =  req
+
+		const DEFAULT_PAGE = 1
+		const DEFAULT_SIZE = 5
+
+		try {
+			const pageNumber = page ? parseInt(page as string) : DEFAULT_PAGE
+			const sizeNumber = size ? parseInt(size as string) : DEFAULT_SIZE
+			const findBooksByUser = await this.booksRepository.findPaginateByUserId({
+				user_id,
+				page:pageNumber,
+				size: sizeNumber,
+			})
+			return res.json(findBooksByUser)
 		} catch (error) {
 			next(error)
 		}
