@@ -44,7 +44,7 @@ class BooksRepository {
 	}
 
 	findById(id:string, user_id:string){
-		return Books.find({_id: id, user_id:user_id}).exec
+		return Books.find({_id: id, user_id:user_id}).exec()
 	}
 
 	async delete(id:string){

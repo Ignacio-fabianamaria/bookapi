@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, request, } from 'express'
+import { NextFunction, Request, Response, } from 'express'
 import { BooksRepository } from '../repositories/BooksRepository'
 
 class BooksController {
@@ -66,8 +66,6 @@ class BooksController {
 		const {user_id} = req
 		try {
 			const findById = await this.booksRepository.findById(id, user_id)
-			console.log('🚀 ~ file: BooksController.ts:68 ~ BooksController ~ delete ~ findById:', findById)
-
 			if(findById.length <= 0){
 				throw new Error('Book not found!')
 			}
