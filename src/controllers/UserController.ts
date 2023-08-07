@@ -20,6 +20,7 @@ class UserController{
 			return res.status(201).json(createUser)
 		} catch (error) {
 			next(error)
+			console.log('🚀 ~ file: UserController.ts:23 ~ UserController ~ store ~ error:', error)
 		}
 	}
 	async index(req: Request, res:Response, next: NextFunction){
@@ -43,6 +44,10 @@ class UserController{
 		const {id} = req.params
 		try {
 			const result = await this.userRepository.findById(id)
+			console.log('🚀 ~ file: UserController.ts:47 ~ UserController ~ show ~ result:', result)
+			if(!result){
+				throw new Error('User not found!')
+			}
 			return res.json(result)
 		} catch (error) {
 			next(error)

@@ -45,7 +45,7 @@ class BooksController {
 		const { user_id } =  req
 
 		const DEFAULT_PAGE = 1
-		const DEFAULT_SIZE = 5
+		const DEFAULT_SIZE = 10
 
 		try {
 			const pageNumber = page ? parseInt(page as string) : DEFAULT_PAGE
@@ -56,6 +56,24 @@ class BooksController {
 				size: sizeNumber,
 			})
 			return res.json(findBooksByUser)
+		} catch (error) {
+			next(error)
+		}
+	}
+
+	async delete(req:Request, res:Response, next:NextFunction){
+		const {id} = req.params
+		const {user_id} = req
+		try {
+			const findById = await this.booksRepository.findById(id, user_id)
+			console.log('🚀 ~ file: BooksController.ts:68 ~ BooksController ~ delete ~ findById:', findById)
+
+			if(findById.length <= 0){
+				throw new Error('Book not found!')
+			}
+			const result = await this.booksRepository.delete(id)
+			return res.json(result)
+
 		} catch (error) {
 			next(error)
 		}

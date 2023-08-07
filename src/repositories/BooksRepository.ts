@@ -38,8 +38,17 @@ class BooksRepository {
 		return result
 	}
 
-	async findPaginateByUserId({user_id, page, size}:IBookPaginate){
+	findPaginateByUserId({user_id, page, size}:IBookPaginate){
 		const result = Books.find({user_id}).skip((page-1)*size).limit(size).exec()
+		return result
+	}
+
+	findById(id:string, user_id:string){
+		return Books.find({_id: id, user_id:user_id}).exec
+	}
+
+	async delete(id:string){
+		const result = await Books.findByIdAndRemove(id)
 		return result
 	}
 }

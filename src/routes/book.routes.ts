@@ -18,7 +18,12 @@ class BookRoutes {
 		)
 
 		this.router.get('/', this.authMiddleware.auth.bind(this.authMiddleware),
-			this.booksController.index.bind(this.booksController))
+			this.booksController.index.bind(this.booksController)
+		)
+
+		this.router.delete('/:id', this.authMiddleware.auth.bind(this.authMiddleware),
+			this.booksController.delete.bind(this.booksController)
+		)
 
 
 
