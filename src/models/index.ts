@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import {v4 as uuid} from 'uuid'
+// import {v4 as uuid} from 'uuid'
 
 const userSchema = new mongoose.Schema({
 	name: String,

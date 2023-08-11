@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, } from 'express'
+import { NextFunction, Request, Response, request, } from 'express'
 import { BooksRepository } from '../repositories/BooksRepository'
 
 class BooksController {
@@ -74,6 +74,39 @@ class BooksController {
 
 		} catch (error) {
 			next(error)
+		}
+	}
+
+	async update(req:Request, res:Response, next:NextFunction){
+		const{rate} = req.body
+		const{id} = req.params
+		const{user_id} = req
+		try {
+			const findById = await this.booksRepository.findById(id,user_id)
+			if(findById.length <=0){
+				throw new Error('Book not found')
+			}
+			if(!rate){
+				throw new Error('Rate not found')
+			}
+			if(rate < 0 || rate > 5){
+				throw new Error('Only rate between 0 and 5')
+			}
+
+			const result = await this.booksRepository.update({
+				rate,
+				read:true,
+				dateRead:new Date(),
+				id,
+			})
+			if(result.modifiedCount !== 1){
+				throw new Error('Update was not successful')
+			}
+			return res.json({message: 'Updated successfully!'})
+
+		} catch (error) {
+			next(error)
+
 		}
 	}
 }

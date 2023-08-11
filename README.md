@@ -1,4 +1,5 @@
 # :book: BOOKAPI
+sistema de controle de leitura e notas de livros
 
 ## :rocket: Descrição
 
@@ -12,6 +13,7 @@ A BOOKAPI é uma API de gerenciamento de livros, que permite cadastrar usuários
 - Atualizar usuário
 - Deletar Livro
 - Deletar usuário
+- Editar e Inserir notas para os livros
 
 ## :clipboard: Regras de negócio
 
@@ -20,6 +22,7 @@ A BOOKAPI é uma API de gerenciamento de livros, que permite cadastrar usuários
 - Não é possível deletar uma conta de usuário inexistente.
 - Não é possível deletar um livro inexistente.
 - Não é possível atribuir nenhuma nota ao livro que ainda não foi lido.
+- Não é possível atribuir nota para livro que não foi lido
 
 ## MongoDB Atlas Database Configuration
 
