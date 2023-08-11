@@ -11,6 +11,54 @@ class UserRoutes{
 	}
 
 	getRoutes(){
+		/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Create user
+ *     description: Create user
+ *     parameters:
+ *       - in: body
+ *         name: user
+ *         description: User object
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             email:
+ *               type: string
+ *             password:
+ *               type: string
+ *           example:
+ *             name: Anne Mars
+ *             email: am@test.com
+ *             password: '123456'
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                   description: username
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *                 __v:
+ *                   type: number
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
+
 		this.router.post('/',this.userController.store.bind(this.userController))
 		this.router.get('/',this.userController.index.bind(this.userController))
 		this.router.get('/:id',this.userController.show.bind(this.userController))

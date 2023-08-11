@@ -1,0 +1,29 @@
+/**
+* /users:
+*    post:
+*      summary: Create user
+*			descripition: Create user
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              type: object
+*              properties:
+*                name:
+*                  type: string
+*                email:
+*                  type: string
+*								password:
+*                  type: string
+*              example:
+*                name: Anne Mars
+*                email: am@test.com
+*								password: '123456'
+*      responses:
+*        200:
+*          description: OK
+*				400:
+*				  description: 'Bad Request'
+*				401:
+*				  description: 'Unauthorized'
+*/
