@@ -1,29 +1,47 @@
-/**
-* /users:
-*    post:
-*      summary: Create user
-*			descripition: Create user
-*      requestBody:
-*        content:
-*          application/json:
-*            schema:
-*              type: object
-*              properties:
-*                name:
-*                  type: string
-*                email:
-*                  type: string
-*								password:
-*                  type: string
-*              example:
-*                name: Anne Mars
-*                email: am@test.com
-*								password: '123456'
-*      responses:
-*        200:
-*          description: OK
-*				400:
-*				  description: 'Bad Request'
-*				401:
-*				  description: 'Unauthorized'
-*/
+		/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Create user
+ *     description: Create user
+ *     parameters:
+ *       - in: body
+ *         name: user
+ *         description: User object
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             email:
+ *               type: string
+ *             password:
+ *               type: string
+ *           example:
+ *             name: Anne Mars
+ *             email: am@test.com
+ *             password: '123456'
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                   description: username
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *                 __v:
+ *                   type: number
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */

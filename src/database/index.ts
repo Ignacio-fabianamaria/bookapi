@@ -7,7 +7,7 @@ class DbConnection{
 			await	mongoose.connect(dbUrl)
 			console.log('connect to database')
 		} catch (error) {
-			console.log('Error to connect database')
+			console.log('Error to connect database', error)
 		}
 	}
 }

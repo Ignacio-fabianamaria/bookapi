@@ -29,7 +29,3 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 })
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
-
-// throw new Error("message")
-
-// Arquivo Server.ts vai apenas setar as configurações iniciais e repassar para as rotas

@@ -26,7 +26,6 @@ class UserController{
 	async index(req: Request, res:Response, next: NextFunction){
 	// buscar todos
 		const {page, size} = req.query
-		console.log('🚀 ~ file: UserController.ts:29 ~ UserController ~ index ~ page, size:', page, size)
 
 		const DEFAULT_PAGE = 1
 		const DEFAULT_SIZE = 2
@@ -44,7 +43,6 @@ class UserController{
 		const {id} = req.params
 		try {
 			const result = await this.userRepository.findById(id)
-			console.log('🚀 ~ file: UserController.ts:47 ~ UserController ~ show ~ result:', result)
 			if(!result){
 				throw new Error('User not found!')
 			}

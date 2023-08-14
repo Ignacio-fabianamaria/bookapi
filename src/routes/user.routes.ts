@@ -9,14 +9,12 @@ class UserRoutes{
 		this.router = Router()
 		this.userController = new UserController()
 	}
-
-	getRoutes(){
-		/**
+	/**
  * @swagger
- * /users:
+ * /user:
  *   post:
  *     summary: Create user
- *     description: Create user
+ *     description: Cadastrar um novo usuário
  *     parameters:
  *       - in: body
  *         name: user
@@ -58,6 +56,9 @@ class UserRoutes{
  *       401:
  *         description: Unauthorized
  */
+
+
+	getRoutes(){
 
 		this.router.post('/',this.userController.store.bind(this.userController))
 		this.router.get('/',this.userController.index.bind(this.userController))

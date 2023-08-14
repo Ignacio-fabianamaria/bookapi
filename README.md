@@ -24,6 +24,14 @@ A BOOKAPI é uma API de gerenciamento de livros, que permite cadastrar usuários
 - Não é possível atribuir nenhuma nota ao livro que ainda não foi lido.
 - Não é possível atribuir nota para livro que não foi lido
 
+## Swagger
+
+<details>
+
+[ http://localhost:3333/docs/v1/ ]
+
+</details>
+
 ## MongoDB Atlas Database Configuration
 
 <details>
