@@ -21,6 +21,7 @@ class BookRoutes {
  *       - in: header
  *         name: email
  *         description: Email do usuário autenticado
+ *         example: bb@teste.com
  *         required: true
  *         schema:
  *           type: string

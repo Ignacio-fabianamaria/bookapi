@@ -88,6 +88,46 @@ class UserRoutes{
  *         description: Unauthorized
  */
 
+	/**
+ * @swagger
+ * /user/{id}:
+ *   get:
+ *     summary: Create user
+ *     description: Cadastrar um novo usuário
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do user a ser obtido
+ *         example: 64d6770c1e30b936abb02705
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                   description: username
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *                 __v:
+ *                   type: number
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
+
+
 	getRoutes(){
 
 		this.router.post('/',this.userController.store.bind(this.userController))
