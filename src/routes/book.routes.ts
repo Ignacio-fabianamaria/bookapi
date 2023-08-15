@@ -18,14 +18,14 @@ class BookRoutes {
  *     summary: Create book
  *     description: Cadastrar um novo livro
  *     parameters:
- *       - in: headers
+ *       - in: header
  *         name: email
  *         description: Email do usuário autenticado
  *         required: true
  *         schema:
  *           type: string
  *       - in: body
- *         name: user
+ *         name: book
  *         description: Book object
  *         schema:
  *           type: object
@@ -50,7 +50,7 @@ class BookRoutes {
  *             read: true
  *             rate: 5
  *     responses:
- *       200:
+ *       201:
  *         description: OK
  *         content:
  *           application/json:

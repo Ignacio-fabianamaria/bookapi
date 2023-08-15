@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, request, } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { BooksRepository } from '../repositories/BooksRepository'
 
 class BooksController {

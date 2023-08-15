@@ -1,47 +1,95 @@
-		/**
- * @swagger
- * /users:
- *   post:
- *     summary: Create user
- *     description: Create user
- *     parameters:
- *       - in: body
- *         name: user
- *         description: User object
- *         schema:
- *           type: object
- *           properties:
- *             name:
- *               type: string
- *             email:
- *               type: string
- *             password:
- *               type: string
- *           example:
- *             name: Anne Mars
- *             email: am@test.com
- *             password: '123456'
- *     responses:
- *       200:
- *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 _id:
- *                   type: string
- *                 name:
- *                   type: string
- *                   description: username
- *                 email:
- *                   type: string
- *                 password:
- *                   type: string
- *                 __v:
- *                   type: number
- *       400:
- *         description: Bad Request
- *       401:
- *         description: Unauthorized
- */
+/**
+  @swagger
+  /books:
+    post:
+      summary: Create book
+      description: Cadastrar um novo livro
+      parameters:
+        - in: header
+          name: email
+          description: Email do usuário autenticado
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                author:
+                  type: string
+                description:
+                  type: string
+                company:
+                  type: string
+                read:
+                  type: boolean
+                rate:
+                  type: number
+              example:
+                name: Death on the Nile
+                author: Agatha Christie
+                description: Is a work of detective fiction
+                company: Harper Paperbacks
+                read: true
+                rate: 5
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  author:
+                    type: string
+                  company: string
+                  read:
+                    type: boolean
+                  description:
+                    type: string
+                  rate:
+                    type: number
+                  user_id:
+                    type: string
+                  _id:
+                    type: string
+                  __v:
+                    type: number
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+ /
+
+
+requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            author:
+              type: string
+            description:
+              type: string
+            company:
+              type: string
+            read:
+              type: boolean
+            rate:
+              type: number
+          example:
+            name: Death on the Nile
+            author: Agatha Christie
+            description: É uma obra de ficção de detetive
+            company: Harper Paperbacks
+            read: true
+            rate: 5
