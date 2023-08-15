@@ -57,6 +57,36 @@ class UserRoutes{
  *         description: Unauthorized
  */
 
+	/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: Get users
+ *     description: Renorta os usuários cadastrados
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                   description: username
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *                 __v:
+ *                   type: number
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
 
 	getRoutes(){
 
@@ -65,8 +95,6 @@ class UserRoutes{
 		this.router.get('/:id',this.userController.show.bind(this.userController))
 		this.router.put('/:id',this.userController.update.bind(this.userController))
 		this.router.delete('/:id',this.userController.delete.bind(this.userController))
-
-
 
 		return this.router
 	}

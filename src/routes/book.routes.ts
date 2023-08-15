@@ -80,6 +80,50 @@ class BookRoutes {
  *         description: Unauthorized
  */
 
+	/**
+ * @swagger
+ * /books:
+ *   get:
+ *     summary: Create book
+ *     description: Cadastrar um novo livro
+ *     parameters:
+ *       - in: header
+ *         name: email
+ *         description: Email do usuário autenticado
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 author:
+ *                   type: string
+ *                   company: string
+ *                 read:
+ *                   type: boolean
+ *                 description:
+ *                   type: string
+ *                 rate:
+ *                   type: number
+ *                 user_id:
+ *                   type: string
+ *                 _id:
+ *                   type: string
+ *                 __v:
+ *                   type: number
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
+
 	getRoutes():Router {
 		this.router.post('/',
 			this.authMiddleware.auth.bind(this.authMiddleware),
