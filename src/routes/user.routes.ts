@@ -158,19 +158,32 @@ class UserRoutes{
  *     responses:
  *       200:
  *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
  *       400:
  *         description: Bad Request
  *       401:
  *         description: Unauthorized
  */
 
+	/**
+ * @swagger
+ * /user/{id}:
+ *   delete:
+ *     summary: Delete user
+ *     description: Exclui um usuário cadastrado
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: ID do user a ser excluido
+ *         required: true
+ *         example: 64da4f762c0b2ac222220eb7
+ *     responses:
+ *       200:
+ *         description: OK
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
 
 	getRoutes(){
 

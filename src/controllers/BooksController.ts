@@ -80,6 +80,7 @@ class BooksController {
 	async update(req:Request, res:Response, next:NextFunction){
 		const{rate} = req.body
 		const{id} = req.params
+		console.log('🚀 ~ file: BooksController.ts:83 ~ BooksController ~ update ~ id:', id)
 		const{user_id} = req
 		try {
 			const findById = await this.booksRepository.findById(id,user_id)
