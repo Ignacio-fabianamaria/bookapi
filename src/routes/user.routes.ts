@@ -127,6 +127,50 @@ class UserRoutes{
  *         description: Unauthorized
  */
 
+	/**
+ * @swagger
+ * /user/{id}:
+ *   put:
+ *     summary: Update user
+ *     description: Atualiza dados de um usuário cadastrado
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: ID do user a ser obtido
+ *         required: true
+ *         example: 64da4f762c0b2ac222220eb7
+ *       - in: body
+ *         name: user
+ *         description: User object
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             password:
+ *               type: string
+ *             oldPassword:
+ *               type: string
+ *           example:
+ *             name: Anne Mars
+ *             password: '123456'
+ *             oldPassword: '123abc'
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
+
 
 	getRoutes(){
 

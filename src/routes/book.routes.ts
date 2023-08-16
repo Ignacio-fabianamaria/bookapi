@@ -125,6 +125,76 @@ class BookRoutes {
  *         description: Unauthorized
  */
 
+	/**
+ * @swagger
+ * /books:
+ *   post:
+ *     summary: Create book
+ *     description: Cadastrar um novo livro
+ *     parameters:
+ *       - in: header
+ *         name: email
+ *         description: Email do usuário autenticado
+ *         example: bb@teste.com
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: body
+ *         name: book
+ *         description: Book object
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             author:
+ *               type: string
+ *             description:
+ *               type: string
+ *             company:
+ *               type: string
+ *             read:
+ *               type: boolean
+ *             rate:
+ *               type: number
+ *           example:
+ *             name: Death on the Nile
+ *             author: Agatha Christie
+ *             description: Is a work of detective fiction
+ *             company: Harper Paperbacks
+ *             read: true
+ *             rate: 5
+ *     responses:
+ *       201:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 author:
+ *                   type: string
+ *                   company: string
+ *                 read:
+ *                   type: boolean
+ *                 description:
+ *                   type: string
+ *                 rate:
+ *                   type: number
+ *                 user_id:
+ *                   type: string
+ *                 _id:
+ *                   type: string
+ *                 __v:
+ *                   type: number
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ */
+
 	getRoutes():Router {
 		this.router.post('/',
 			this.authMiddleware.auth.bind(this.authMiddleware),
