@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+
 class DbConnection{
 	async connect(){
 		try {
