@@ -51,6 +51,7 @@ Antes de executar o aplicativo, você precisa configurar um banco de dados Mongo
 
 ```dotenv
 DB_URL=SUA_URL_DO_MONGODB_ATLAS
+```
 
 </details>
 
