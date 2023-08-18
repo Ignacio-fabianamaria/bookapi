@@ -5,7 +5,6 @@ import dotenv from 'dotenv'
 import { BookRoutes } from './routes/book.routes'
 import swaggerUi from 'swagger-ui-express'
 import { SwaggerSpec } from './utils/swagger'
-import { SwaggerUI } from 'swagger-ui-dist'
 
 
 dotenv.config()
@@ -21,15 +20,8 @@ app.use(express.urlencoded({extended: true}))/*configura o Express para analisar
 app.use('/user', userRoutes)
 app.use('/books', booksRoutes)
 app.use('/docs/v1', swaggerUi.serve, swaggerUi.setup(SwaggerSpec))
+app.use('/swagger', express.static('node_modules/swagger-ui-dist'))
 
-const swaggerOptions = {
-	customCss: '.swagger-ui .topbar { display: none }', // Opcional: para ocultar a parte superior do Swagger UI
-}
-
-app.get('/swagger', (req: Request, res: Response) => {
-	const swaggerHTML = swaggerUi.generateHTML(SwaggerSpec, swaggerOptions)
-	res.send(swaggerHTML)
-})
 
 database.connect()
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
