@@ -19,8 +19,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))/*configura o Express para analisar dados de formulários enviados por requisições POST.*/
 app.use('/user', userRoutes)
 app.use('/books', booksRoutes)
+app.use('/swagger', express.static('public'))
 app.use('/docs/v1', swaggerUi.serve, swaggerUi.setup(SwaggerSpec))
-app.use('/swagger', express.static('node_modules/swagger-ui-dist'))
 
 
 database.connect()
